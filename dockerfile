@@ -1,10 +1,11 @@
 FROM ubuntu:24.04
 
-RUN apt update && \
-    apt install apache2 -y
+RUN apt-get update && \
+    apt-get install -y nginx && \
+    apt-get clean
 
 COPY index.html /var/www/html/index.html
 
 EXPOSE 80
 
-CMD ["apachectl","-D","FOREGROUND"]
+CMD ["nginx", "-g", "daemon off;"]
